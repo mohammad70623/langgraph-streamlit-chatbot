@@ -12,3 +12,7 @@ llm = ChatGroq(model="openai/gpt-oss-safeguard-20b", temperature=0.2)
 class ChatState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
+def chat_node(state: ChatState):
+    messages = state['messages']
+    response = llm.invoke(messages)
+    return {"messages": [response]}
